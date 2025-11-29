@@ -1,0 +1,59 @@
+version: '3.8'
+
+# DUUI Pipeline: Sentiment → HateCheck → FactChecking
+# All images from docker.texttechnologylab.org
+
+services:
+  # Component 1: Sentiment Analysis
+  # Uses multilingual XLM-RoBERTa model (supports EN, DE, FR, etc.)
+  sentiment:
+    image: docker.texttechnologylab.org/textimager-duui-transformers-sentiment:latest
+    platform: linux/amd64  # Required for Apple Silicon (M1/M2)
+    container_name: duui-sentiment
+    ports:
+      - "9001:9714"
+    environment:
+      - LOG_LEVEL=INFO
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9714/v1/typesystem"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+
+  # Component 2: Hate Speech Detection
+  # Using HateCheck model (English)
+  hatecheck:
+    image: docker.texttechnologylab.org/duui-hate-hate-check-eziisk:latest
+    platform: linux/amd64
+    container_name: duui-hatecheck
+    ports:
+      - "9002:9714"
+    environment:
+      - LOG_LEVEL=INFO
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9714/v1/typesystem"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+
+  # Component 3: Fact Checking
+  # Using MiniCheck model
+  factchecking:
+    image: docker.texttechnologylab.org/duui-factchecking-minicheck:latest
+    platform: linux/amd64
+    container_name: duui-factchecking
+    ports:
+      - "9003:9714"
+    environment:
+      - LOG_LEVEL=INFO
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9714/v1/typesystem"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 120s  # FactChecking models take longer to load
