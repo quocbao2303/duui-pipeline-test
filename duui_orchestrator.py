@@ -117,8 +117,8 @@ def run_sentiment(text: str) -> Dict[str, Any]:
 
 
 def run_hatecheck(text: str) -> Dict[str, Any]:
-    """Run Hate Speech Detection."""
-    print("\n[2/3] Running Hate Speech Detection...")
+    """Run Hate Checking."""
+    print("\n[2/3] Running Hate Checking...")
     
     payload = {
         "selections": [
@@ -152,7 +152,7 @@ def run_hatecheck(text: str) -> Dict[str, Any]:
 
 def run_factcheck(claim_fact_pairs: List[Dict]) -> Dict[str, Any]:
     """
-    Run Fact Checking via DUUI wrapper.
+    Run Fact Checking.
     """
     print("\n[3/3] Running Fact Checking...")
     
@@ -316,8 +316,8 @@ def display_results(
     else:
         print("  (No output)")
     
-    # --- HATE SPEECH ---
-    print("\n--- HATE SPEECH OUTPUT ---")
+    # --- HATE CHECK ---
+    print("\n--- HATE CHECK OUTPUT ---")
     print(f"\n  Input Text:")
     print(f"  {truncate_text(test_text, 200)}")
     print()

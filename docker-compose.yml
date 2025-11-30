@@ -5,10 +5,9 @@ version: '3.8'
 
 services:
   # Component 1: Sentiment Analysis
-  # Uses multilingual XLM-RoBERTa model (supports EN, DE, FR, etc.)
   sentiment:
     image: docker.texttechnologylab.org/textimager-duui-transformers-sentiment:latest
-    platform: linux/amd64  # Required for Apple Silicon (M1/M2)
+    platform: linux/amd64
     container_name: duui-sentiment
     ports:
       - "9001:9714"
@@ -23,7 +22,6 @@ services:
       start_period: 60s
 
   # Component 2: Hate Speech Detection
-  # Using HateCheck model (English)
   hatecheck:
     image: docker.texttechnologylab.org/duui-hate-hate-check-eziisk:latest
     platform: linux/amd64
@@ -56,4 +54,4 @@ services:
       interval: 30s
       timeout: 10s
       retries: 5
-      start_period: 120s  # FactChecking models take longer to load
+      start_period: 120s

@@ -37,34 +37,29 @@
     </dependencyManagement>
 
     <dependencies>
-        <!-- DUUI Core - using release version (more stable than commit hashes) -->
         <dependency>
             <groupId>com.github.texttechnologylab</groupId>
             <artifactId>DockerUnifiedUIMAInterface</artifactId>
             <version>1.4.6</version>
         </dependency>
 
-        <!-- TTLab Type System -->
         <dependency>
             <groupId>com.github.texttechnologylab</groupId>
             <artifactId>UIMATypeSystem</artifactId>
             <version>1.0</version>
         </dependency>
 
-        <!-- DKPro for sentence segmentation (optional but helpful) -->
         <dependency>
             <groupId>org.dkpro.core</groupId>
             <artifactId>dkpro-core-api-segmentation-asl</artifactId>
         </dependency>
 
-        <!-- Logging -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
             <version>2.0.9</version>
         </dependency>
 
-        <!-- JSON support for UIMA -->
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
