@@ -40,13 +40,13 @@
         <dependency>
             <groupId>com.github.texttechnologylab</groupId>
             <artifactId>DockerUnifiedUIMAInterface</artifactId>
-            <version>1.4.6</version>
+            <version>1.5.3</version>
         </dependency>
 
         <dependency>
             <groupId>com.github.texttechnologylab</groupId>
             <artifactId>UIMATypeSystem</artifactId>
-            <version>1.0</version>
+            <version>02fb1a2f13</version>
         </dependency>
 
         <dependency>
